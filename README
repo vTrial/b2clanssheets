@@ -1,0 +1,14 @@
+how to operate:
+create credentials.json
+
+{
+    "installed":{
+        "client_id":"207373962191-gm8mke4us1u78q5gqm1sb01g63ete5ni.apps.googleusercontent.com",
+        "project_id":"battles-2-clans",
+        "auth_uri":"https://accounts.google.com/o/oauth2/auth",
+        "token_uri":"https://oauth2.googleapis.com/token",
+        "auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs",
+        "client_secret": INSERT CLIENT SECRET,
+        "redirect_uris":["http://localhost"]
+    }
+}
