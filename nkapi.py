@@ -22,14 +22,19 @@ def get_filtered_player_list():
 
 def get_clan_counts():
     filtered_player_list = get_filtered_player_list()
-    counts = {}
+    clan_counts = {}
     for entry in filtered_player_list:
         name = entry[0]
         if '<' in name and '>' in name:
             start = name.index('<')
             end = name.index('>', start)
-            key = name[start + 1:end].lower()
-            counts[key] = [counts.get(key, [0, 0])[0] + 1, counts.get(key, [0, 0])[1] + entry[1]]
-    lst_count = [[count, counts[count][0], counts[count][1], counts[count][1] // counts[count][0]] for count in counts]
-    sorted_count = sorted(lst_count, key=lambda x: x[1], reverse=True)
+            clan = name[start + 1:end].lower()
+            clan_members = clan_counts.get(clan, [0, 0])[0] + 1
+            clan_total_score = clan_counts.get(clan, [0, 0])[1] + entry[1]
+            clan_counts[clan] = [clan_members, clan_total_score]
+    lst_count = [[clan, clan_counts[clan][0], clan_counts[clan][1], clan_counts[clan][1] // clan_counts[clan][0]] for clan in clan_counts]
+    # secondary sort: score
+    sorted_count = sorted(lst_count, key=lambda x: x[2], reverse=True)
+    # primary sort: member count
+    sorted_count = sorted(sorted_count, key=lambda x: x[1], reverse=True)
     return sorted_count
